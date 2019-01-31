@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the RegisterPage page.
@@ -15,11 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
+
+  @ViewChild ('username') user;
+  @ViewChild ('password') password;
+
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public alertCtrl: AlertController
+      ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
+  registerUser(){
+    console.log('Would sign in with ', this.user.value, this.password.value);
 
-}
+    }
+
+  }
+  
+
+
