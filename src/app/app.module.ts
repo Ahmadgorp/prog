@@ -10,11 +10,24 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+const firebaseAuth = {
+  apiKey: "AIzaSyAhqwmF6dSrdhfHyL21S9Xu9VNNC-Nst8I",
+  authDomain: "prog-f1ea0.firebaseapp.com",
+  databaseURL: "https://prog-f1ea0.firebaseio.com",
+  projectId: "prog-f1ea0",
+  storageBucket: "prog-f1ea0.appspot.com",
+  messagingSenderId: "522711313358"
+};
+
 
 @NgModule({
   declarations: [
@@ -25,10 +38,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LoginPage,
     RegisterPage,
+    
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseAuth),
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
