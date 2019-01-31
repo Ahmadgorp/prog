@@ -26,10 +26,27 @@ export class RegisterPage {
       ) {
   }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
+  }
+
+  alert(message: string) {
+    this.alertCtrl.create({
+    title: 'Info',
+    subTitle: message,
+    buttons: ['OK']
+    }).present();
+  }
+
   registerUser(){
     this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
     .then(data => {
       console.log('got data', data);
+      this.alert('Registered');
+    })
+    .catch(error => {
+      console.log('got an error',error);
+      this.alert(error.message);
     });
 
     console.log('Would sign in with ', this.user.value, this.password.value);

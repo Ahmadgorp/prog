@@ -12,6 +12,8 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { LoggedinPage } from '../pages/loggedin/loggedin';
+
 
 
 
@@ -38,6 +40,7 @@ const firebaseAuth = {
     TabsPage,
     LoginPage,
     RegisterPage,
+    LoggedinPage,
     
   ],
   imports: [
@@ -55,6 +58,7 @@ const firebaseAuth = {
     TabsPage,
     LoginPage,
     RegisterPage,
+    LoggedinPage,
   ],
   providers: [
     StatusBar,
