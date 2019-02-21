@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { LoginPage } from '../login/login';
+import { auth } from 'firebase/app';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -15,45 +18,41 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class RegisterPage {
 
-  
+  username : string =""
+  password : string =""
+  cpassword : string = ""
 
-  @ViewChild ('username') user;
-  @ViewChild ('password') password;
+    constructor(public afAuth: AngularFireAuth,
+      public alert: AlertController,
+      public navCtrl: NavController) { }
 
-  constructor(private fire: AngularFireAuth, public navCtrl: NavController,
-     public navParams: NavParams,
-     public alertCtrl: AlertController
-      ) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
-
-  alert(message: string) {
-    this.alertCtrl.create({
-    title: 'Info',
-    subTitle: message,
-    buttons: ['OK']
-    }).present();
-  }
-
-  registerUser(){
-    this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
-    .then(data => {
-      console.log('got data', data);
-      this.alert('Registered');
-    })
-    .catch(error => {
-      console.log('got an error',error);
-      this.alert(error.message);
-    });
-
-    console.log('Would sign in with ', this.user.value, this.password.value);
-
+    ngOnInit() {
+    }
+    async register(){
+      const { username, password, cpassword} = this
+      if(password !== cpassword) {
+        this.showAlert("Error","Passwords don`t match")
+        return console.error("Password don`t match") 
+      }
+      try{
+        const res = await this.afAuth.auth.createUserWithEmailAndPassword(username + '@codedwon.com', password)
+        console.log(res)
+        this.showAlert("Success!", "Welcome aboard!")
+      }catch(error) {
+        console.dir(error)
+        this.showAlert("Error", error.message)
+      }
     }
 
-  }
+    async showAlert(header:string, message:string) {
+      const alert = await this.alert.create({
+        title: 'hello',
+        message,
+        buttons: ["OK"]
+      })
+      await alert.present()
+    }
+}
   
 
 

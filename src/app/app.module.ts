@@ -13,7 +13,8 @@ import { RegisterPage } from '../pages/register/register';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoggedinPage } from '../pages/loggedin/loggedin';
-
+import firebaseconfig from './firebase'
+import {HttpModule} from '@angular/http'
 
 
 
@@ -21,7 +22,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
-const firebaseAuth = {
+const config = {
   apiKey: "AIzaSyAhqwmF6dSrdhfHyL21S9Xu9VNNC-Nst8I",
   authDomain: "prog-f1ea0.firebaseapp.com",
   databaseURL: "https://prog-f1ea0.firebaseio.com",
@@ -46,8 +47,10 @@ const firebaseAuth = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseAuth),
+    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(firebaseconfig),
     AngularFireAuthModule,
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

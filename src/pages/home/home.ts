@@ -19,13 +19,13 @@ export class HomePage {
 
   }
 
-  signIn(){
-    this.navCtrl.push(LoginPage);
-  }
+  // signIn(){
+  //   this.navCtrl.push(LoginPage);
+  // }
 
-  register(){
-    this.navCtrl.push(RegisterPage);
-  }
+  // register(){
+  //   this.navCtrl.push(RegisterPage);
+  // }
 
 
 }
